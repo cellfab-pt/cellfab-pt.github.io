@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Mixing and Dispersing</title>
+
+        <!--Connect the css file and the js file-->
+        <link rel="stylesheet" type="text/css" href="Mixing_style.css">
+        <script type="text/javascript" src="Mixing.js"></script>
+    </head>
+
+    <!--On load of the page, open the 'defaultOpen tab'-->
+    <body onload="document.getElementById('defaultOpen').click();"> 
+<!-------------------------------------------------------------------------------------------------------------------------------------------------------------->
+<!--                                                           LOGO, LANGUAGE, NAVIGATION BAR                                                                 -->
+<!-------------------------------------------------------------------------------------------------------------------------------------------------------------->
+        <header>
+            <div class="Navigation_Bar Navigation_Link">
+                <img class="CELLFAB_Logo" src="Images\DataAccess\CELLFAB_logo.png" alt="CELLFAB_logo" >
+                <a href="DataAccess.html">DATA ACCESS</a>
+                <a href="DataInput.html">DATA INPUT</a>
+                <a>DEUTSCH</a>
+            </div>
+        </header>
+
+<!-------------------------------------------------------------------------------------------------------------------------------------------------------------->
+<!--                                                                   TITLE, MAIN CONTAINER                                                              -->
+<!-------------------------------------------------------------------------------------------------------------------------------------------------------------->
+        <h1 class="Page_Title">Mixing & Dispersing</h1>          
+
+        <div class="div_MainContainer">
+            
+            <!--Process flow chain showing current position of the process-->
+            <div class="div_ProcessFlow">
+                <img class="img_ProcessLogo" src="Images\DataAccess\1_Electrode_Manufacturing\1_E_InputMaterials.png" alt="Input Materials logo">                           
+                <img class="img_ProcessArrow" src="Images\DataAccess\Input_Arrow.png" alt="Arrow">
+                <img class="img_ProcessLogoChosen" src="Images\DataAccess\1_Electrode_Manufacturing\2_E_MixingDispersing.png" alt="Mixing and Dispersing logo">                          
+                <img class="img_ProcessArrow" src="Images\DataAccess\Arrow.png" alt="Arrow">
+                <img class="img_ProcessLogo" src="Images\DataAccess\1_Electrode_Manufacturing\3_E_Coating.png" alt="Coating logo">                          
+                <img class="img_ProcessArrow" src="Images\DataAccess\Arrow.png" alt="Arrow">
+                <img class="img_ProcessLogo" src="Images\DataAccess\1_Electrode_Manufacturing\4_E_Drying.png" alt="Drying logo">                           
+                <img class="img_ProcessArrow" src="Images\DataAccess\Arrow.png" alt="Arrow">
+                <img class="img_ProcessLogo" src="Images\DataAccess\1_Electrode_Manufacturing\5_E_Calendaring.png" alt="Calendaring logo">                      
+                <img class="img_ProcessArrow" src="Images\DataAccess\Arrow.png" alt="Arrow">
+                <img class="img_ProcessLogo" src="Images\DataAccess\1_Electrode_Manufacturing\6_E_Slitting.png" alt="Slitting logo">                         
+                <img class="img_ProcessArrow" src="Images\DataAccess\Arrow.png" alt="Arrow">
+                <img class="img_ProcessLogo" src="Images\DataAccess\1_Electrode_Manufacturing\7_E_VacuumDrying.png" alt="Vacuum drying logo">                    
+                <img class="img_ProcessArrow" src="Images\DataAccess\Input_Arrow.png" alt="Arrow">
+                <img class="img_ProcessLogo" src="Images\DataAccess\1_Electrode_Manufacturing\8_E_ElectrodeFoil.png" alt="Electrode foil logo">                    
+            </div>
+            
+            <div style=" display: flex; justify-content: space-between;">
+                <h4>Batch ID: </h4>    <!-- TODO: Read batch ID from server-->
+
+                <div>
+                    <button class="button_1" onclick="openProcessFlow()">Reference Process Flow</button>
+            
+                    <div class="popup_ProcessFlow" id="popup_ProcessFlow">
+                        <button type="button" class="button_PopUpCancel" onclick="closeProcessFlow()">x</button> <br>
+                        <img class="img_ProcessFlow"src="Images\Mixing\MixingProcessFlow.png" alt="Image of Process Flow">
+                    </div>
+
+                    <a class="button_1" href="https://onedrive.live.com/redir?resid=154068B5BA211242%211807&authkey=%21AjK8kQtUBmG5oH4&page=View&wd=target%28Fertigungsprotokolle%20Q2%2022.one%7C1d1bc475-5c48-4db1-ae5c-ce649b07c107%2FZeitraum%7C86baeb91-fc20-4fc0-8944-21db69c010e6%2F%29">CELLFAB OneNote</a> 
+                </div>
+            </div>
+
+<!-------------------------------------------------------------------------------------------------------------------------------------------------------------->
+<!--                                                                    TABS                                                                                  -->
+<!-------------------------------------------------------------------------------------------------------------------------------------------------------------->
+
+            <div class="div_Tab">
+                <button class="button_TabLinks" onclick="openTab(event, 'Manual')" id="defaultOpen">Manual</button>    <!--This tab is opened when the page loads-->
+                <button class="button_TabLinks" onclick="openTab(event, 'Variables')">Variables</button>
+                <button class="button_TabLinks" onclick="openTab(event, 'TableTab')" id = "Table_tab">Mixing Steps</button>                 
+            </div>
+
+<!-------------------------------------------------------------------------------------------------------------------------------------------------------------->
+<!--                                                                  MANUAL TAB                                                                              -->
+<!-------------------------------------------------------------------------------------------------------------------------------------------------------------->  
+
+            <div id="Manual" class="div_TabContent" style="font-size: 16px; font-weight: 600;">
+                <br>
+                The mixing process aims to produce a homogeneous slurry without destroying the material structures by accessive shear force. <br><br>
+
+                &bull; The button "Reference Process Flow" shows an example process flow that was normally used for reference. <br><br>
+
+                &bull; The button "CELLFAB OneNote" directs you to the OneNote Notebook of the process for more information. <br><br>
+
+                &bull; To add a new step, press the "Add Step" tab and enter the details.  <br><br>
+                
+                &bull; After submitting the details, the page automatically directs you to the "Mixing Steps" tab which summarises all the mixing steps in a table. <br><br>
+
+                &bull; If an error was found in the table, the mixing step can be deleted and reentered in the "Mixing Steps" tab too. <br><br>
+            </div>
+
+<!-------------------------------------------------------------------------------------------------------------------------------------------------------------->
+<!--                                                              ADD VARIABLE TAB                                                                            -->
+<!-------------------------------------------------------------------------------------------------------------------------------------------------------------->  
+
+            <div id="Variables" class="div_TabContent">
+                <h3>Please enter the variables and press the 'Add mixing step' button</h3> 
+
+                <div class="div_AddVariable">
+                    <div class="div_AddVariableLeft">
+
+                        <!------------------------->
+                        <!-- VARIABLE : MATERIAL -->
+                        <!------------------------->
+                        <img class="img_VariableIcon" src="Images\Mixing\material_icon.png" alt="Material icon">
+                        <label class="ProcessVariables">&emsp;Material</label>
+                        <a href="https://www.google.com">   <!--TODO : Change to OneNote link-->
+                            <img class="img_InfoIcon" src="Images\Mixing\info_icon.png" alt="Info icon">
+                        </a>
+                            
+                        <!--List of material options-->
+                        <select class ="ProcessInput" name="Materials" id="Materials" onclick="materialVariables()">
+                            <option value="Graphit">Graphit</option>
+                            <option value="CMC">CMC</option>
+                            <option value="Ruß">Ruß</option>
+                            <option value="SBR">SBR</option>
+                            <option value="None">None</option>
+                        </select><br><br><br>
+                        
+                        <!----------------------->
+                        <!-- VARIABLE : WEIGHT -->
+                        <!----------------------->
+                        <!--Weight variable is unavailable when the material chosen is "none"-->
+                        <p id="weight_form" style="display:block">
+                            <img class="img_VariableIcon" src="Images\Mixing\weight_icon.png" alt="Weight icon">
+                            <label class="ProcessVariables">&emsp;Weight</label>
+                            <a href="https://www.google.com">   <!--TODO : Change to OneNote link-->
+                                <img class="img_InfoIcon" src="Images\Mixing\info_icon.png" alt="Info icon">
+                            </a>  
+                            <input class ="ProcessInput" id="Weight" type="number" name="Weight">
+                            <label class="ProcessInputUnit">g</label><br><br><br>
+                        </p>
+
+                        <!---------------------------->
+                        <!-- VARIABLE : TEMPERATURE -->
+                        <!---------------------------->
+                        <img class="img_VariableIcon" src="Images\Mixing\temp_icon.png" alt="Temp icon">
+                        <label class="ProcessVariables">&emsp;Temperature</label>
+                        <a href="https://www.google.com">   <!--TODO : Change to OneNote link-->
+                            <img class="img_InfoIcon" src="Images\Mixing\info_icon.png" alt="Info icon">
+                        </a>  
+                        <input class ="ProcessInput"id="Temperature" type="number" name="Temperature">
+                        <label class="ProcessInputUnit">°C</label><br><br><br><br>
+
+                        <!--------------------->
+                        <!-- VARIABLE : TIME -->
+                        <!--------------------->
+                        <img class="img_VariableIcon" src="Images\Mixing\time_icon.png" alt="Time icon">
+                        <label class="ProcessVariables">&emsp;Time</label>
+                        <a href="https://www.google.com">   <!--TODO : Change to OneNote link-->
+                            <img class="img_InfoIcon" src="Images\Mixing\info_icon.png" alt="Info icon">
+                        </a>
+                        <input class ="ProcessInput"type="text" id="Time">
+                        <label class="ProcessInputUnit">Minutes</label><br><br><br><br>
+
+                        <!------------------------------->
+                        <!-- VARIABLE : ROTATING SPEED -->
+                        <!------------------------------->
+                        <img class="img_VariableIcon" src="Images\Mixing\speed_icon.png" alt="Speed icon">
+                        <label class="ProcessVariables">&emsp;Speed</label>
+                        <a href="https://www.google.com">   <!--TODO : Change to OneNote link-->
+                            <img class="img_InfoIcon" src="Images\Mixing\info_icon.png" alt="Info icon">
+                        </a>
+                        <input class ="ProcessInput"type="text" id="Speed">
+                        <label class="ProcessInputUnit">rad/s</label><br><br><br><br>
+
+                        <!-------------------------->
+                        <!-- VARIABLE : VISCOSITY -->
+                        <!-------------------------->
+                        <img class="img_VariableIcon" src="Images\Mixing\viscosity_icon.png" alt="Viscosity icon">
+                        <label class="ProcessVariables">&emsp;Viscosity</label>
+                        <a href="https://www.google.com">  <!--TODO : Change to OneNote link-->
+                            <img class="img_InfoIcon" src="Images\Mixing\info_icon.png" alt="Info icon">
+                        </a> 
+                        <input class ="ProcessInput"type="text" id="Viscosity">
+                        <label class="ProcessInputUnit">Ns/m<sup>2</sup></label><br><br><br>
+
+                        <!------------------------------------------>
+                        <!-- VARIABLE : WATER CHECKBOX AND VOLUME -->
+                        <!------------------------------------------>
+                        <!--Volume variable is only available when the 'add water' checkbox is ticked-->
+                        <input type="checkbox" id="checkbox_AddWater" name="checkbox_AddWater" onClick="showVolumeInput()">
+                        <label for="checkbox_AddWater"> Add water</label><br><br>
+                        <p id="volume_form" style="display:none">
+                            <img class="img_VariableIcon" src="Images\Mixing\volume_icon.png" alt="Volume icon">
+                            <label class="ProcessVariables">&emsp;Volume</label>
+                            <a href="https://www.google.com">  <!--TODO : Change to OneNote link-->
+                                <img class="img_InfoIcon" src="Images\Mixing\info_icon.png" alt="Info icon">
+                            </a>
+                            <input class ="ProcessInput"type="text" id="Volume" >
+                            <label class="ProcessInputUnit" >Litre</label><br><br><br>
+                        </p>
+
+                        <!-------------------------------------->
+                        <!-- VARIABLE : ADD VARIABLE TEMPLATE -->
+                        <!-------------------------------------->
+                        <!--
+                            <img class="img_VariableIcon" src="Images\Mixing\**NAME_OF_VARIABLE_ICON**" alt="**NAME_OF_VARIABLE** icon">
+                            <a class="ProcessVariables" href="**ONE_NOTE_PAGE_ADDRESS**">&emsp;**NAME_OF_VARIABLE**</a>  
+                            <input class ="ProcessInput" id="**NAME_OF_VARIABLE_NO_SPACE**" type="number" name="**NAME_OF_VARIABLE_NO_SPACE**">
+                            <label class="ProcessInputUnit">**VARIABLE_UNIT**</label><br><br><br><br>
+                        -->
+                        
+                        <!--------------------------->
+                        <!-- BUTTON : ADD VARIABLE -->
+                        <!--------------------------->
+                        <button class="button_2" onclick="addVariable(
+                            document.getElementById('Materials').value, 
+                            document.getElementById('Weight').value,
+                            document.getElementById('Temperature').value,
+                            document.getElementById('Time').value,
+                            document.getElementById('Speed').value,
+                            document.getElementById('Viscosity').value,
+                            document.getElementById('checkbox_AddWater').checked,
+                            document.getElementById('Volume').value
+                            /*------------------------------------
+                            --- BUTTON : ADD VARIABLE TEMPLATE ---
+                            --------------------------------------
+                            ,document.getElementById('**NAME_OF_VARIABLE_NO_SPACE**').value */
+                            )">
+                            <span>Add Variable</span>
+                        </button> <br><br>
+                    </div>
+                    
+                    <!----------------------------------->
+                    <!-- MATERIAL & INSTRUMENT SUBTABS -->
+                    <!----------------------------------->
+                    <div class="div_AddVariableRight">
+                        <div class="div_SubTab">
+                            <button class="button_SubTabLinks" onclick="openSubTab(event, 'Material')" >Material</button>
+                            <button class="button_SubTabLinks" onclick="openSubTab(event, 'Instruments')" >Instruments</button> 
+                        </div>
+
+                        <div id="Material" class="div_SubTabContent">
+                            this is tab for materials
+                        </div>
+    
+                        <div id="Instruments" class="div_SubTabContent">
+                            this is tab for instruments
+                        </div>
+                    </div>
+                </div>                    
+            </div>
+
+<!-------------------------------------------------------------------------------------------------------------------------------------------------------------->
+<!--                                                                 TABLE TAB                                                                                -->
+<!-------------------------------------------------------------------------------------------------------------------------------------------------------------->                
+            <div id="TableTab" class="div_TabContent">
+                <table id="Table"> 
+                    <tr> 
+                        <th>Materials</th>
+                        <th>Weight</th>
+                        <th>Temperature</th>
+                        <th>Time</th>
+                        <th>Rotating Speed</th>
+                        <th>Viscosity</th>
+                        <th>Water</th>
+                        <th>Volume</th>
+                        <!------------------------------->
+                        <!-- ADD TABLE COLUMN TEMPLATE -->
+                        <!------------------------------->
+                        <!--
+                            <th>**NAME_OF_VARIABLE** **VARIABLE_UNIT**</th>
+                        -->
+                        <th>&emsp;&emsp;&emsp;</th> 
+                    </tr> <tr></tr>
+                </table> <br><br><br>
+
+                <div id="counterDiv" style="display:none"> <input id="counter" type="number" value="0" readonly></div>
+
+                <!-- Done button -->
+                <button class="button_2" onclick="doneProcess()">
+                    <span>Mixing Done</span>
+                </button> <br><br>
+            </div>
+        </div>         
+    </body>
+</html>
